@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+  labels:
+    type: perm-database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      type: perm-database
+  template:
+    metadata:
+      name: postgres-pod
+      labels:
+        type: perm-database
+    spec:
+      containers:
+        - name: mypostgres
+          image: postgres
+          env:
+           - name: POSTGRES_PASSWORD
+             value: admin
+...

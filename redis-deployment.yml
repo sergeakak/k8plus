@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+  labels:
+    type: temp-database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      type: temp-database
+  template:
+    metadata:
+      name: redis-pod
+      labels:
+        type: temp-database
+    spec:
+      containers:
+        - name: myredis
+          image: redis
+...
